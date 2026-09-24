@@ -6,7 +6,7 @@ When objects/instances are paused, the only events active are between pre- and p
 
 ## Basic setup
 - Create a script in GameMaker.
-- Copy code from [GMStates.gml](https://github.com/maklore/GMPause/blob/main/GMPause.gml) and paste to script.
+- Copy code from [GMPause.gml](https://github.com/maklore/GMPause/blob/main/GMPause.gml) and paste to script.
 
 - Add to any object's create event you want to be paused.
   ```gml
