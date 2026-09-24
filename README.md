@@ -3,7 +3,7 @@
 
 <br></br>
 When objects/instances are paused, the only events active are between pre- and post-draw events.
-
+> Based on PixelatedPope's pause [tutorial](https://www.youtube.com/watch?v=8OeSMgBSau4).
 ## Basic setup
 - Create a script in GameMaker.
 - Copy code from [GMPause.gml](https://github.com/maklore/GMPause/blob/main/GMPause.gml) and paste to script.
