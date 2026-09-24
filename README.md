@@ -2,7 +2,7 @@
 <h4 align="center">A small pause manager.</h4>
 
 <br></br>
-When paused, the only events active are between pre- and post-draw events.
+When objects/instances are paused, the only events active are between pre- and post-draw events.
 
 ## Basic setup
 - Create a script in GameMaker.
