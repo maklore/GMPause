@@ -3,19 +3,22 @@
  * @returns {struct.GMPause}
  */
 function GMPause(){
-    
+
 	static paused = false;
     static pause_list = [];
+	static pause_ps_list = [];
 	static pause_count = 0;
-    
+	
     /**
-     * Add instance or object id to a pause list.
+     * Add instance, object, or particle system id to a pause list.
      * @param {id.Instance} _id Instance or object ID.
      */
     static add = function(_id) {
-        if !struct_exists(_id, "object_index") or 
-           !instance_exists(_id) or 
-           array_contains(pause_list, _id) { 
+		if part_system_exists(_id) {
+			array_push(pause_ps_list, _id);
+			return true;
+		}
+        if !instance_exists(_id) or array_contains(pause_list, _id) or array_contains(pause_ps_list, _id) { 
             return false;
         }
         array_push(pause_list, _id);
@@ -29,6 +32,7 @@ function GMPause(){
 		pause_count++;
 		if paused { exit; }
         __clear_nonexistant();
+		__part_sys_pause();
         paused = true;
 
     }    
@@ -40,6 +44,7 @@ function GMPause(){
 		pause_count--;
         if pause_count > 0 { exit; }
         __reactivate_instances();
+		__part_sys_unpause();
 		paused = false;
     }
     
@@ -101,6 +106,28 @@ function GMPause(){
             }
         }
     }
+	
+	/// @ignore
+	static __part_sys_pause = function() {
+		var _ps_count = array_length(pause_ps_list);
+		for (var i = 0; i < _ps_count; ++i) {
+			var _ps = pause_ps_list[i];
+			if part_system_exists(_ps) {
+				part_system_automatic_update(_ps, false);
+			}
+		}
+	}
+	
+	/// @ignore
+	static __part_sys_unpause = function() {
+		var _ps_count = array_length(pause_ps_list);
+		for (var i = 0; i < _ps_count; ++i) {
+			var _ps = pause_ps_list[i];
+			if part_system_exists(_ps) {
+				part_system_automatic_update(_ps, true);
+			}
+		}
+	}
     
     return static_get(GMPause);
     
