@@ -11,7 +11,7 @@ function GMPause(){
 	
     /**
      * Add instance, object, or particle system id to a pause list.
-     * @param {id.Instance} _id Instance or object ID.
+     * @param {id.Instance} _id Instance, object, or particle system ID.
      */
     static add = function(_id) {
 		if part_system_exists(_id) {
