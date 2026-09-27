@@ -72,6 +72,7 @@ function GMPause(){
 	 */
 	static event_room_end = function() {
 		pause_list = [];
+		pause_ps_list = [];
 	}
 	
 	
